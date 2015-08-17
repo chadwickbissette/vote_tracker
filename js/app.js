@@ -1,6 +1,6 @@
 'use strict'
 
-var photoArray; //array of photo objects that carry the path and the vote
+var photoArray = []; //array of photo objects that carry the path and the vote
 //tally, and perhaps the name too.
 
 //[{}, {}, {}...]
@@ -12,11 +12,6 @@ var Photo = function(fileLocation) { //constructor
 
 }
 
-var photo1 = new Photo('img/photo1.jpg')//example
-...
-...
-...
-var photo14 = new Photo('img/photo14.jpg')//example
 
 var Tracker = function() {
   this.leftPhoto
@@ -65,19 +60,19 @@ Tracker.prototype.displayWinner = function() {
 
 //DOM 'document.getElementById'
 
-var photo1 = new Photo('img/photo1.jpg');//example
-var photo2 = new Photo('img/photo2.jpg');
-var photo3 = new Photo('img/photo3.jpg');
-var photo4 = new Photo('img/photo4.jpg');
-var photo5 = new Photo('img/photo5.jpg');
-var photo6 = new Photo('img/photo6.jpg');
-var photo7 = new Photo('img/photo7.jpg');
-var photo8 = new Photo('img/photo8.jpg');
-var photo9 = new Photo('img/photo9.jpg');
-var photo10 = new Photo('img/photo10.jpg');
-var photo11 = new Photo('img/photo11.jpg');
-var photo12 = new Photo('img/photo12.jpg');
-var photo13 = new Photo('img/photo13.jpg');
-var photo14 = new Photo('img/photo14.jpg')//example
+var photo1 = new Photo('img/kittens/photo1.jpg');//example
+var photo2 = new Photo('img/kittens/photo2.jpg');
+var photo3 = new Photo('img/kittens/photo3.jpg');
+var photo4 = new Photo('img/kittens/photo4.jpg');
+var photo5 = new Photo('img/kittens/photo5.jpg');
+var photo6 = new Photo('img/kittens/photo6.jpg');
+var photo7 = new Photo('img/kittens/photo7.jpg');
+var photo8 = new Photo('img/kittens/photo8.jpg');
+var photo9 = new Photo('img/kittens/photo9.jpg');
+var photo10 = new Photo('img/kittens/photo10.jpg');
+var photo11 = new Photo('img/kittens/photo11.jpg');
+var photo12 = new Photo('img/kittens/photo12.jpg');
+var photo13 = new Photo('img/kittens/photo13.jpg');
+var photo14 = new Photo('img/kittens/photo14.jpg');//example
 
 var Tracker = function() {
