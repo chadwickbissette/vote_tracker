@@ -24,21 +24,19 @@ Tracker.prototype.setPhoto = function(){
 };
 
 Tracker.prototype.displayPhotos = function() {
-  var theLeftPhotoElement = document.getElementById("photo1");
-  theLeftPhotoElement.attributes[0].value = this.leftPhoto.path;
-
-  var theRightPhotoElement = document.getElementById("photo2");
-  theRightPhotoElement.attributes[0].value = this.rightPhoto.path;
+  $('#photo1').attr("src",this.leftPhoto.path);
+  $('#photo2').attr("src",this.rightPhoto.path);
+  this.highlight();
 };
 
 
 Tracker.prototype.highlight = function(highlightIt) {
   //Remove existing highlighting (if any)
-  document.getElementById('photo1').className = "central";
-  document.getElementById('photo2').className = "central";
+  $('#photo1').attr("class", "central");
+  $('#photo2').attr("class", "central");
   //Highlight Element
   if (highlightIt){
-    highlightIt.className = "central highlight";
+    highlightIt.attr("class", "central highlight");
   }
 };
 
@@ -48,25 +46,22 @@ Tracker.prototype.incrementVote = function(winner){
 
 Tracker.prototype.returnWinnerElement = function(){
     if (this.leftPhoto.vote > this.rightPhoto.vote) {
-      var winnerElementLocation = document.getElementById("photo1");
+      return $('#photo1');
 
     } else if (this.leftPhoto.vote < this.rightPhoto.vote){
-        var winnerElementLocation = document.getElementById("photo2");
+        return $('#photo2');
       }
-    return winnerElementLocation;
 };
 
 Tracker.prototype.listenForVote = function(){
-  var theLeftPhotoElement = document.getElementById("photo1");
-  theLeftPhotoElement.addEventListener('click', function(){
+  $('#photo1').on('click', function(){
     tracker1.incrementVote(tracker1.leftPhoto);
     var winnerDomLocation = tracker1.returnWinnerElement();
     tracker1.displayWinner(winnerDomLocation);
     }
   );
 
-  var theRightPhotoElement = document.getElementById("photo2");
-  theRightPhotoElement.addEventListener('click', function(){
+  $('#photo2').on('click', function(){
     tracker1.incrementVote(tracker1.rightPhoto);
     var winnerDomLocation = tracker1.returnWinnerElement();
     tracker1.displayWinner(winnerDomLocation);
@@ -74,8 +69,7 @@ Tracker.prototype.listenForVote = function(){
 };
 
 Tracker.prototype.drawTheChart = function(){
-  var canvasElement = document.getElementById("chart");
-  canvasElement.attributes[1].value = "centrals";
+  $('#chart').attr("class", "central");
   var leftPercentage = Math.ceil(this.leftPhoto.vote/(this.leftPhoto.vote + this.rightPhoto.vote)*100);
   var rightPercentage = (100 - leftPercentage);
 
@@ -102,12 +96,10 @@ Tracker.prototype.drawTheChart = function(){
 };
 
 Tracker.prototype.encourageNext = function (){
-  var canvasElement = document.getElementById("chart");
-  var voteAgainButton = document.getElementById("thebutton");
-  voteAgainButton.attributes[1].value = "button";
-  voteAgainButton.addEventListener('click', function(){
-    voteAgainButton.attributes[1].value = "button noDisplay";
-    canvasElement.attributes[1].value = "central noDisplay";
+  $('#thebutton').attr("class", "button");
+  $('#thebutton').on('click', function(){
+    $('#thebutton').attr("class", "button noDisplay");
+    $('#chart').attr("class", "central noDisplay");
     tracker1.waitingForVote();
   });
 };
@@ -125,35 +117,13 @@ Tracker.prototype.displayWinner = function(winner) {
 };
 
 
-//Set the process in motion by instantiating a tracker and calling State 1 method
+//Set the process in motion by instantiating a tracker, all 14 photos, and calling State 1 method
 var tracker1 = new Tracker();
 
-tracker1.photoArray.push(new Photo('img/kittens/photo1.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo2.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo3.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo4.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo5.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo6.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo7.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo8.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo9.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo10.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo11.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo12.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo13.jpg'));
-tracker1.photoArray.push(new Photo('img/kittens/photo14.jpg'));
+var numberPhotos = 14;
+for (var i = 0; i < numberPhotos; i++){
+  tracker1.photoArray.push(new Photo('img/kittens/photo' + (i+1) +'.jpg'));
+}
 
 tracker1.waitingForVote();
 
-
-
-
-
-// the old "waiting dof vote TODO list":
-  //recieve click and increment the vote count
-  //event listener on each photo
-  //drawTheChart()?
-  //giveUserOptionToVoteAgain()?
-  //event listener will call dispalyWinner()
-  //call displayPhoto()
-  //recieveVote()
