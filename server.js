@@ -12,6 +12,11 @@ app.get('/secret', function(req, res){
   res.send('This is a secret message!');
 });
 
+// SECRET message
+app.get('/SECRET', function(req, res){
+  res.send('secretMessage');
+});
+
 // Send 404.html for all
 app.use(function(req, res, next){
   res.status(404).sendFile(__dirname + '/404.html')
