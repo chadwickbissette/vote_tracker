@@ -4,3 +4,6 @@ Model of the vote tracker problem domain, including html/CSS/JS/Chart.js/, using
 Used background picture beloning to Syahrel Azha Hashim
 
 https://www.flickr.com/photos/shutterscreamer/14109310424/sizes/l/
+
+Deployed on Heroku:
+https://stark-ridge-6027.herokuapp.com/
