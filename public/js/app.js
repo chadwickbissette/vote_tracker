@@ -12,7 +12,6 @@ $(document).ready(function(){
     })
     .done(function(obtained){
       var photos = obtained.data.images;
-      console.dir(photos);
 
         var Photo = function(fileLocation) {
           this.path = fileLocation;
@@ -26,7 +25,6 @@ $(document).ready(function(){
         };
 
         var tracker1 = new Tracker('blank');
-        console.dir(tracker1);
 
         for(var i=0; i<photos.length; i++){
           tracker1.photoArray.push(new Photo(photos[i].link))
@@ -57,7 +55,12 @@ $(document).ready(function(){
           $('#photo2').attr("class", "central");
           //Highlight Element
           if (highlightIt){
-            highlightIt.attr("class", "central highlight");
+            console.dir(highlightIt.attr('id'));
+            if (highlightIt.attr('id') == 'photo1'){
+              highlightIt.attr("class", "central highlightRed");
+            } else if (highlightIt.attr('id') == 'photo2'){
+              highlightIt.attr("class", "central highlightBlue");
+            }
           }
         };
 
